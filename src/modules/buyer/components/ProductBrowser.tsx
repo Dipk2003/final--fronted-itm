@@ -58,7 +58,8 @@ export default function ProductBrowser() {
 
   useEffect(() => {
     applyFilters();
-  }, [products, searchQuery, filters]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchQuery, filters]);
 
   const fetchProducts = async () => {
     try {

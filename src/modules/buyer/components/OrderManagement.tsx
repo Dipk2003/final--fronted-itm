@@ -53,7 +53,11 @@ interface Order {
   deliveredDate?: Date;
 }
 
-export default function OrderManagement() {
+interface OrderManagementProps {
+  compact?: boolean;
+}
+
+export default function OrderManagement({ compact = false }: OrderManagementProps) {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -314,52 +318,56 @@ export default function OrderManagement() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-2xl font-bold text-gray-900">Order Management</h2>
-          <p className="text-gray-600">{filteredOrders.length} order{filteredOrders.length !== 1 ? 's' : ''} found</p>
-        </div>
-        
-        <button
-          onClick={fetchOrders}
-          className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-        >
-          <RefreshCw className="w-4 h-4" />
-          Refresh
-        </button>
-      </div>
+      {!compact && (
+        <>
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900">Order Management</h2>
+              <p className="text-gray-600">{filteredOrders.length} order{filteredOrders.length !== 1 ? 's' : ''} found</p>
+            </div>
+            
+            <button
+              onClick={fetchOrders}
+              className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              <RefreshCw className="w-4 h-4" />
+              Refresh
+            </button>
+          </div>
 
-      {/* Filters */}
-      <div className="flex flex-wrap gap-4 p-4 bg-white rounded-lg border border-gray-200">
-        <div className="flex items-center gap-2">
-          <Filter className="w-4 h-4 text-gray-600" />
-          <span className="text-sm font-medium text-gray-700">Filters:</span>
-        </div>
-        
-        <select
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
-          className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-        >
-          <option value="ALL">All Status</option>
-          <option value="PENDING">Pending</option>
-          <option value="CONFIRMED">Confirmed</option>
-          <option value="SHIPPED">Shipped</option>
-          <option value="DELIVERED">Delivered</option>
-          <option value="CANCELLED">Cancelled</option>
-        </select>
-        
-        <select
-          value={dateFilter}
-          onChange={(e) => setDateFilter(e.target.value)}
-          className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-        >
-          <option value="ALL">All Time</option>
-          <option value="TODAY">Today</option>
-          <option value="WEEK">Last Week</option>
-          <option value="MONTH">Last Month</option>
-        </select>
-      </div>
+          {/* Filters */}
+          <div className="flex flex-wrap gap-4 p-4 bg-white rounded-lg border border-gray-200">
+            <div className="flex items-center gap-2">
+              <Filter className="w-4 h-4 text-gray-600" />
+              <span className="text-sm font-medium text-gray-700">Filters:</span>
+            </div>
+            
+            <select
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+              className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="ALL">All Status</option>
+              <option value="PENDING">Pending</option>
+              <option value="CONFIRMED">Confirmed</option>
+              <option value="SHIPPED">Shipped</option>
+              <option value="DELIVERED">Delivered</option>
+              <option value="CANCELLED">Cancelled</option>
+            </select>
+            
+            <select
+              value={dateFilter}
+              onChange={(e) => setDateFilter(e.target.value)}
+              className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="ALL">All Time</option>
+              <option value="TODAY">Today</option>
+              <option value="WEEK">Last Week</option>
+              <option value="MONTH">Last Month</option>
+            </select>
+          </div>
+        </>
+      )}
 
       {/* Orders List */}
       {filteredOrders.length === 0 ? (
@@ -370,7 +378,7 @@ export default function OrderManagement() {
         </div>
       ) : (
         <div className="space-y-4">
-          {filteredOrders.map((order) => (
+          {(compact ? filteredOrders.slice(0, 3) : filteredOrders).map((order) => (
             <div key={order.id} className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
               <div className="p-6">
                 <div className="flex items-start justify-between mb-4">

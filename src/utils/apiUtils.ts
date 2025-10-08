@@ -1,3 +1,5 @@
+import React from 'react';
+
 // API utilities for error handling, loading states, and common operations
 
 export interface ApiResponse<T = any> {

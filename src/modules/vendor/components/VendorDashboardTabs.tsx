@@ -27,7 +27,11 @@ const tabs = [
   { id: 'profile', label: 'Profile', icon: '👤', color: 'gray' }
 ];
 
-export default function VendorDashboardTabs() {
+interface VendorDashboardTabsProps {
+  isMobile?: boolean;
+}
+
+export default function VendorDashboardTabs({ isMobile = false }: VendorDashboardTabsProps) {
   const [activeTab, setActiveTab] = useState('overview');
   const [productView, setProductView] = useState<'list' | 'add' | 'excel'>('list');
 

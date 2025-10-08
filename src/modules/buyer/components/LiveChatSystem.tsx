@@ -48,7 +48,7 @@ export default function LiveChatSystem({
 
   const wsRef = useRef<WebSocket | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const typingTimeoutRef = useRef<NodeJS.Timeout>();
+  const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -60,6 +60,7 @@ export default function LiveChatSystem({
     return () => {
       disconnectChat();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, recipientId]);
 
   useEffect(() => {

@@ -5,21 +5,24 @@ import React from 'react';
 interface SupportDashboardTabsProps {
   activeTab: string;
   onTabChange: (tab: string) => void;
+  tabs?: Array<{ id: string; label: string; icon: string }>;
 }
 
-const SupportDashboardTabs: React.FC<SupportDashboardTabsProps> = ({ activeTab, onTabChange }) => {
-  const tabs = [
+const SupportDashboardTabs: React.FC<SupportDashboardTabsProps> = ({ activeTab, onTabChange, tabs }) => {
+  const defaultTabs = [
     { id: 'overview', label: 'Overview', icon: '📊' },
     { id: 'tickets', label: 'Tickets', icon: '🎫' },
     { id: 'sla', label: 'SLA Tracking', icon: '⏱️' },
     { id: 'knowledge-base', label: 'Knowledge Base', icon: '📚' },
     { id: 'analytics', label: 'Analytics', icon: '📈' },
   ];
+  
+  const tabItems = tabs || defaultTabs;
 
   return (
     <div className="border-b border-gray-200">
       <nav className="-mb-px flex space-x-8">
-        {tabs.map((tab) => (
+        {tabItems.map((tab) => (
           <button
             key={tab.id}
             onClick={() => onTabChange(tab.id)}

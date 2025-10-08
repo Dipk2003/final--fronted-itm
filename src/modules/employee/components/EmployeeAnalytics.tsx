@@ -186,7 +186,7 @@ const EmployeeAnalytics = () => {
                   outerRadius={isMobile ? 60 : 80}
                   fill="#8884d8"
                   dataKey="count"
-                  label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
+                  label={({ name, percent }) => `${name} ${(percent ? percent * 100 : 0).toFixed(0)}%`}
                   labelLine={false}
                 >
                   {categoryData.map((entry, index) => (

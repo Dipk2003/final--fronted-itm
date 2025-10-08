@@ -109,6 +109,7 @@ const AdvancedProductSearch: React.FC = () => {
     if (query) {
       performSearch(query);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
   const loadAggregations = async () => {

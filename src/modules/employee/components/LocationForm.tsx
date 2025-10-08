@@ -12,9 +12,10 @@ interface LocationFormProps {
   type: 'state' | 'city';
   onClose: () => void;
   states: State[];
+  isMobile?: boolean;
 }
 
-export default function LocationForm({ item, type, onClose, states }: LocationFormProps) {
+export default function LocationForm({ item, type, onClose, states, isMobile = false }: LocationFormProps) {
   const [formData, setFormData] = useState<LocationFormData>({
     name: '',
     code: '',
