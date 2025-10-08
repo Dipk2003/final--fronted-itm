@@ -1,0 +1,9 @@
+@echo off
+echo Starting iTech Frontend...
+cd "C:\Users\Dipanshu pandey\OneDrive\Desktop\itm-main-fronted-main"
+echo Frontend directory: %CD%
+echo Installing dependencies if needed...
+npm install
+echo Starting Next.js development server...
+npm run dev
+pause

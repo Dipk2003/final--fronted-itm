@@ -1,0 +1,15 @@
+import { FlatCompat } from '@eslint/eslintrc';
+
+const compat = new FlatCompat();
+
+export default [
+  ...compat.extends('next/core-web-vitals'),
+  {
+    rules: {
+      'react/no-unescaped-entities': 'off',
+      '@next/next/no-img-element': 'off',
+      'react-hooks/exhaustive-deps': 'warn',
+      'import/no-anonymous-default-export': 'off',
+    },
+  },
+];
