@@ -11,31 +11,31 @@ export const API_CONFIG = {
     
     // Authentication endpoints
     AUTH: {
-      LOGIN: '/auth/login',
-      REGISTER: '/auth/register',
-      REFRESH: '/auth/refresh',
-      LOGOUT: '/auth/logout',
-      PROFILE: '/auth/profile',
-      FORGOT_PASSWORD: '/auth/forgot-password',
-      RESET_PASSWORD: '/auth/reset-password',
-      VERIFY_EMAIL: '/auth/verify-email',
-      VERIFY_OTP: '/auth/verify-otp',
+      LOGIN: '/api/auth/login',
+      REGISTER: '/api/auth/register',
+      REFRESH: '/api/auth/refresh',
+      LOGOUT: '/api/auth/logout',
+      PROFILE: '/api/auth/profile',
+      FORGOT_PASSWORD: '/api/auth/forgot-password',
+      RESET_PASSWORD: '/api/auth/reset-password',
+      VERIFY_EMAIL: '/api/auth/verify-email',
+      VERIFY_OTP: '/api/auth/verify-otp',
       // Role-specific auth endpoints
       ADMIN: {
-        LOGIN: '/auth/admin/login',
-        REGISTER: '/auth/admin/register'
+        LOGIN: '/api/auth/admin/login',
+        REGISTER: '/api/auth/admin/register'
       },
       VENDOR: {
-        LOGIN: '/auth/vendor/login',
-        REGISTER: '/auth/vendor/register'
+        LOGIN: '/api/auth/vendor/login',
+        REGISTER: '/api/auth/vendor/register'
       },
       BUYER: {
-        LOGIN: '/auth/user/login', // Backend doesn't have buyer-specific login, use user login
-        REGISTER: '/auth/register' // Backend doesn't have buyer-specific register, use user register
+        LOGIN: '/api/auth/buyer/login',
+        REGISTER: '/api/auth/register'
       },
       EMPLOYEE: {
-        LOGIN: '/auth/employee/login',
-        REGISTER: '/auth/employee/register'
+        LOGIN: '/api/auth/employee/login',
+        REGISTER: '/api/auth/employee/register'
       }
     },
     

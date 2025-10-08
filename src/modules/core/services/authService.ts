@@ -88,7 +88,7 @@ export class AuthService {
         password: loginData.password,
       };
       
-      const endpoint = `/auth/${userType}/login`;
+      const endpoint = `/api/auth/${userType}/login`;
       const response = await api.post<any>(endpoint, loginPayload);
       
       // Handle both direct login response and OTP required response
@@ -150,12 +150,12 @@ export class AuthService {
     try {
       // Determine the correct endpoint based on userType
       const userType = registerData.userType || 'user';
-      let endpoint = '/auth/register'; // Default to user registration
+      let endpoint = '/api/auth/register'; // Default to user registration
       
       if (userType === 'vendor') {
-        endpoint = '/auth/vendor/register';
+        endpoint = '/api/auth/vendor/register';
       } else if (userType === 'admin') {
-        endpoint = '/auth/admin/register';
+        endpoint = '/api/auth/admin/register';
       }
       
       console.log('🔄 Registering user with endpoint:', endpoint, 'userType:', userType);
@@ -176,7 +176,7 @@ export class AuthService {
   async forgotPassword(email: string): Promise<ApiResponse> {
     try {
       const response = await api.post<any>(
-        `/auth/forgot-password`,
+        `/api/auth/forgot-password`,
         { email } as ForgotPasswordRequestDto
       );
       return response;
@@ -191,7 +191,7 @@ export class AuthService {
   async verifyForgotPasswordOtp(otpData: VerifyOtpRequestDto): Promise<ApiResponse> {
     try {
       const response = await api.post<any>(
-        `/auth/verify-forgot-password-otp`,
+        `/api/auth/verify-forgot-password-otp`,
         otpData
       );
       return response;
@@ -206,7 +206,7 @@ export class AuthService {
   async setPassword(passwordData: SetPasswordDto): Promise<ApiResponse> {
     try {
       const response = await api.post<any>(
-        `/auth/set-password`,
+        `/api/auth/set-password`,
         passwordData
       );
       return response;
@@ -221,7 +221,7 @@ export class AuthService {
   async verifyOtp(otpData: VerifyOtpRequestDto): Promise<JwtResponse> {
     try {
       const jwtResponse = await api.post<JwtResponse>(
-        `/auth/verify-otp`,
+        `/api/auth/verify-otp`,
         {
           emailOrPhone: otpData.email || otpData.emailOrPhone,
           otp: otpData.otp
@@ -245,7 +245,7 @@ export class AuthService {
   async verifyEmailOtp(otpData: VerifyOtpRequestDto): Promise<ApiResponse> {
     try {
       const response = await api.post<any>(
-        `/auth/verify-email-otp`,
+        `/api/auth/verify-email-otp`,
         otpData
       );
       return response;
